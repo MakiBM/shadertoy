@@ -52,7 +52,7 @@ const ShaderDisplay = ({ shaderSource }) => {
   return (
     <canvas
       ref={canvasRef}
-      className="fullscreen-canvas"
+      className="fixed top-0 left-0 w-screen h-screen block m-0 p-0 border-none"
     />
   );
 };

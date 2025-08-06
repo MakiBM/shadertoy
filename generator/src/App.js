@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import ShaderDisplay from './ShaderDisplay';
 
 // Sample shader from default.shader
@@ -17,7 +16,7 @@ const defaultShader = `void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
 function App() {
   return (
-    <div className="App">
+    <div className="m-0 p-0 w-screen h-screen overflow-hidden">
       <ShaderDisplay shaderSource={defaultShader} />
     </div>
   );
