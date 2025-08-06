@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShaderToy Renderer - Sample</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+            font-family: monospace;
+        }
+        canvas {
+            border: 1px solid #333;
+            display: block;
+            margin: 20px auto;
+        }
+        .info {
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>ShaderToy Renderer Sample</h1>
+        <p>Using default.shader - Animated color wave pattern</p>
+    </div>
+    
+    <canvas id="canvas" width="800" height="600"></canvas>
+    
+    <div class="info">
+        <button onclick="toy.isPlaying() ? toy.pause() : toy.play()">Play/Pause</button>
+        <button onclick="toy.reset()">Reset</button>
+    </div>
+
+    <script type="module">
+        import ShaderToyRenderer from './index.js';
+        
+        const shaderSource = `
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = fragCoord/iResolution.xy;
+
+    // Time varying pixel color
+    vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+
+    // Output to screen
+    fragColor = vec4(col,1.0);
+}
+    `;
+        
+        window.toy = new ShaderToyRenderer('canvas');
+        toy.setImage({ source: shaderSource });
+        toy.play();
+        
+        console.log('ShaderToy Renderer initialized with default shader');
+    </script>
+</body>
+</html>

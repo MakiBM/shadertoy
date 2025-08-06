@@ -1,0 +1,42 @@
+{
+  "name": "shadertoy-renderer",
+  "version": "1.0.0",
+  "description": "A lightweight WebGL 2.0 shader renderer for ShaderToy-compatible fragment shaders",
+  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
+  "files": [
+    "index.js",
+    "README.md",
+    "sample.html",
+    "default.shader"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webgl",
+    "shader",
+    "shadertoy",
+    "graphics",
+    "webgl2",
+    "fragment-shader",
+    "rendering"
+  ],
+  "author": "chipweinberger",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chipweinberger/ShaderToyLite.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chipweinberger/ShaderToyLite.js/issues"
+  },
+  "homepage": "https://github.com/chipweinberger/ShaderToyLite.js#readme",
+  "engines": {
+    "node": ">=14"
+  },
+  "peerDependencies": {},
+  "devDependencies": {},
+  "dependencies": {}
+}
