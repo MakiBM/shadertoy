@@ -1,4 +1,4 @@
-// ShaderToyLite - A lightweight WebGL 2.0 shader renderer
+// ShaderToyRenderer - A lightweight WebGL 2.0 shader renderer
 // Original by chipweinberger: https://github.com/chipweinberger/ShaderToyLite.js
 
 function ShaderToyRenderer(canvasId) {
