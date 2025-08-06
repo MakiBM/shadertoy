@@ -5,6 +5,7 @@ const ShaderDisplay = ({ shaderSource }) => {
   const canvasRef = useRef(null);
   const rendererRef = useRef(null);
 
+  // Initialize renderer only once
   useEffect(() => {
     const updateCanvasSize = () => {
       if (canvasRef.current) {
@@ -19,40 +20,55 @@ const ShaderDisplay = ({ shaderSource }) => {
     // Handle resize
     window.addEventListener('resize', updateCanvasSize);
 
-    if (canvasRef.current && shaderSource) {
+    if (canvasRef.current && !rendererRef.current) {
       // Generate unique canvas ID
       const canvasId = `shader-canvas-${Math.random().toString(36).substring(2, 11)}`;
       canvasRef.current.id = canvasId;
       
       try {
-        // Initialize renderer
+        // Initialize renderer once
         rendererRef.current = new ShaderToyRenderer(canvasId);
-        
-        // Set shader
-        rendererRef.current.setImage({ source: shaderSource });
-        
-        // Start animation
         rendererRef.current.play();
         
-        console.log('Shader initialized successfully');
+        console.log('Shader renderer initialized');
       } catch (error) {
-        console.error('Failed to initialize shader:', error);
+        console.error('Failed to initialize shader renderer:', error);
       }
     }
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
-      if (rendererRef.current) {
-        rendererRef.current.pause();
-      }
     };
+  }, []);
+
+  // Update shader source without recreating renderer
+  useEffect(() => {
+    if (rendererRef.current && shaderSource) {
+      try {
+        // Update shader without stopping animation
+        rendererRef.current.setImage({ source: shaderSource });
+        console.log('Shader updated');
+      } catch (error) {
+        console.error('Failed to update shader:', error);
+      }
+    }
   }, [shaderSource]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-screen h-screen block m-0 p-0 border-none"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        display: 'block',
+        margin: 0,
+        padding: 0,
+        border: 'none'
+      }}
     />
   );
 };
